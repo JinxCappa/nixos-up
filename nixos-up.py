@@ -243,7 +243,7 @@ if not efi:
 # it avoids putting hashed passwords into the world-readable nix store. See
 # https://discourse.nixos.org/t/introducing-nixos-up-a-dead-simple-installer-for-nixos/12350/11?u=samuela *)
 hashed_password = subprocess.run(["mkpasswd", "--method=sha-512", password], check=True, capture_output=True, text=True).stdout.strip()
-password_file_path = f"/mnt/etc/passwordFile-{username}"
+password_file_path = f"/mnt/etc/hashedPasswordFile-{username}"
 with open(password_file_path, "w") as f:
   f.write(hashed_password)
 os.chmod(password_file_path, 600)
